@@ -1,0 +1,45 @@
+name: HW1 - Word Frequency Refactor
+
+on:
+  push:
+    paths:
+      - 'Homework 1/**'
+  pull_request:
+    paths:
+      - 'Homework 1/**'
+
+env:
+  HW_DIR: "Homework 1"
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Pylint
+        run: pip install pylint
+      - name: Run Pylint
+        run: |
+          pylint "$HW_DIR/wc0_fixed.py" --fail-under=8.0
+
+  grading-check:
+    runs-on: ubuntu-latest
+    needs: quality-check
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run Standard Grading
+        run: make
+        working-directory: ${{ env.HW_DIR }}
+      - name: Verify Bonus Features (Smoke Test)
+        run: make bonus-demo
+        working-directory: ${{ env.HW_DIR }}
