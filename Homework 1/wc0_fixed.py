@@ -6,6 +6,7 @@ Heuristics Applied: SoC, SRP, Mechanism vs Policy, Small Functions, Streaming, B
 """
 
 import sys
+import json
 from typing import Iterator, Dict, List, Tuple, Optional, Any, Set
 
 # =============================================================================
@@ -45,6 +46,7 @@ CONFIG: Dict[str, Any] = {
     "file": "essay.txt",
     "policy_file": "config.yaml",
     "top_n": 10,
+    "format": "text",  # Options: "text", "json", "csv"
     "bar_char": "*",
     # Presentation policies
     "width_idx": 2,
@@ -126,6 +128,16 @@ def print_stats(counts: Dict[str, int]) -> None:
     print(f"Total words (after removing stopwords): {total}")
     print(f"Unique words: {unique}\n")
 
+def to_json(counts: Dict[str, int]) -> None:
+    """Bonus: Dumps results as JSON."""
+    print(json.dumps(counts, indent=2))
+
+def to_csv(sorted_items: List[Tuple[str, int]]) -> None:
+    """Bonus: Dumps results as CSV."""
+    print("rank,word,count")
+    for i, (word, count) in enumerate(sorted_items, 1):
+        print(f"{i},{word},{count}")
+
 def format_row(i: int, word: str, count: int) -> str:
     """Formats a single output row using CONFIG policies."""
     bar = CONFIG["bar_char"] * count
@@ -146,6 +158,16 @@ def print_report(filename: str, counts: Dict[str, int], sorted_items: List[Tuple
     print_stats(counts)
     print_top_n(sorted_items)
 
+def print_formatted(filename: str, counts: Dict[str, int], sorted_items: List[Tuple[str, int]]) -> None:
+    """Selects the correct output format based on CONFIG."""
+    fmt = CONFIG["format"]
+    if fmt == "json":
+        to_json(counts)
+    elif fmt == "csv":
+        to_csv(sorted_items)
+    else:
+        print_report(filename, counts, sorted_items)
+
 # =============================================================================
 # CONTROLLER (Orchestration)
 # =============================================================================
@@ -155,9 +177,9 @@ def run() -> None:
     # Pipeline: Chain generators lazily (File -> Words -> Filtered)
     stream = stream_filter(stream_words(stream_lines(CONFIG["file"])))
     
-    # Execution: Consume stream, sort, and report
+    # Execution & Presentation
     counts = count_from_stream(stream)
-    print_report(CONFIG["file"], counts, get_sorted_items(counts))
+    print_formatted(CONFIG["file"], counts, get_sorted_items(counts))
 
 if __name__ == "__main__":
     run()
