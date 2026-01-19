@@ -1,0 +1,24 @@
+[MASTER]
+# Allow loading plugins if needed
+load-plugins=
+
+[MESSAGES CONTROL]
+# C0114: Missing module docstring (we enforce this, but maybe not everywhere)
+# C0103: Invalid name (variables like 'i', 'x', 'f' are fine in short scopes)
+# C0301: Line too long (we bump this to 120 chars)
+# R0903: Too few public methods (classes used for structure often have few methods)
+disable=
+    C0103,
+    R0903
+
+[FORMAT]
+# "Guru" Standard: 100 characters per line is more modern than 80
+max-line-length=100
+
+# Allow standard single-letter variables for loops/math
+good-names=i,j,k,ex,Run,_,f,w,n
+
+[DESIGN]
+# Allow slightly more arguments/locals if necessary for clarity
+max-args=6
+max-locals=15
