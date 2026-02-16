@@ -2,7 +2,7 @@ DATA = page_blocks_dirty.csv
 SHELL := /bin/bash
 GIT_ROOT := $(shell git rev-parse --show-toplevel 2>/dev/null)
 HERE := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-
+.DEFAULT_GOAL := help
 all: out/S1 out/S2 out/S3 out/S4 out/S5 \
      out/A out/B out/C out/D out/E out/F \
      out/G out/H out/I out/J out/K out/L out/M
@@ -19,7 +19,7 @@ banner:
 	@printf '\033[36m'
 	@printf '%s\n' "think + do"
 	@printf '\033[0m\n'
-	
+
 date: ## show date
 	@date
 
