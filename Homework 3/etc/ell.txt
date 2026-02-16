@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-bold="\033[1m"
-col0="\033[0m"       # reset
-col1="\033[36m"      # cyan
-col2="\033[33m"      # yellow
-PS1="$bold$col2🔆 \W \u* ▶ $col0"
-=======
 # aliases
 tree() { command tree -C "$@"; }
 ls()   { command ls --color "$@"; }
@@ -40,10 +33,10 @@ dirty() {
 }
 
 # prompt 
-bold=$(tput bold)
-col0=$(tput sgr0)
-col1=$(tput setaf 6)
-col2=$(tput setaf 3)
+bold="\033[1m"
+col0="\033[0m"       # reset
+col1="\033[36m"      # cyan
+col2="\033[33m"      # yellow
 
 _prompt_string='🔆 ${bold}${col1}$(basename "$(dirname "$PWD")")/$(basename "$PWD")${col0} ${col2}$(branch)$(dirty)${col0} ▶ '
 
@@ -55,4 +48,3 @@ else
 fi
 
 [ -n "$1" ] && "$@"
->>>>>>> d8d2ba10a78b0ecdb84995fb952c0bcdf7f7ff61
