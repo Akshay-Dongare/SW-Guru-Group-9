@@ -34,3 +34,17 @@
 
 ---
 *Summary: The dataset has structural integrity (no ragged rows) but suffers from significant content errors, including corrupt target labels and useless constant features.*
+
+## Part 2: Statistical & Domain Knowledge Checks (Python)
+
+### Feature-Level Issues (Checks A–F)
+* **A & B (Identical & Correlated Features):** Evaluated feature redundancy. Highly correlated columns (Pearson |r| > 0.95) and identical columns point to opportunities for dimensionality reduction.
+* **C (Outlier Features):** Several features contained values exceeding 3 standard deviations (3σ) from the column mean, indicating heavy right-skew or extreme anomalies in the data collection.
+* **D & E (Conflicting & Implausible Features):** Highlighted features that violated fundamental physical logic (e.g., negative physical dimensions like `HEIGHT` at row 140) or referential logic (e.g., mismatch between `AREA` and `HEIGHT * LENGHT`).
+* **Total Problem Features (F):** A significant subset of the columns exhibit at least one logical or statistical anomaly, necessitating heavy scaling/cleaning before modeling.
+
+### Case-Level Issues (Checks G–M)
+* **G & I (Outlier Cases):** Evaluated rows containing anomalies both globally (>3σ from overall mean) and class-conditionally (>3σ from class mean). A row might look normal overall but be completely anomalous for its specific `class!`.
+* **H (Inconsistent Cases):** Uncovered a small set of rows (12 instances) that have the exact same feature inputs but map to different output classes. This inconsistency creates impossible contradictory mapping for ML algorithms. 
+* **J & K (Conflicting & Implausible Cases):** Flagged 16 specific rows with mathematically impossible proportions or bounding-box constraints.
+* **Total Problem Cases (L & M):** In total, **753 unique rows** contain at least one data quality defect. This implies that roughly **13.7%** of the dataset (753 out of 5473 rows) requires imputation, bounding, or dropping prior to training a machine learning model.
