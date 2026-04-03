@@ -11,10 +11,10 @@ Welcome to my submission repository. Below you will find links to individual hom
 | Assignment | Topic | Status | Links |
 | :--- | :--- | :---: | :--- |
 | **Homework 1** | **Refactoring & Heuristics**<br>*(Separation of Concerns, Mechanism vs Policy)* | ✅ Complete | [📂 Open Folder](./Homework%201) |
-| **Homework 2** | *TBD* | ⏳ Pending | - |
-| **Homework 3** | *TBD* | ⏳ Pending | - |
-| **Homework 4** | *TBD* | ⏳ Pending | - |
-| **Homework 5** | *TBD* | ⏳ Pending | - |
+| **Homework 2** | *TBD* | ✅ Complete  | - |
+| **Homework 3** | *TBD* | ✅ Complete  | - |
+| **Homework 4** | *TBD* | ✅ Complete  | - |
+| **Homework 5** | *TBD* | ✅ Complete  | - |
 | **Homework 6** | **The world's greatest hello world function**<br>*(Packaging, CI/CD, and GH Pages)*| ✅ Complete | [📂 Open Folder](./Homework%206) |
 
 ---
