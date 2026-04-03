@@ -1,0 +1,23 @@
+name: Docs
+on:
+  push:
+    branches: [main]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pycco
+      - run: |
+          mkdir -p docs
+          pycco -d docs "Homework 6/src/hello.py"
+          mv docs/hello.html docs/index.html
+        name: Generate Docs
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: regen docs
+          file_pattern: docs/

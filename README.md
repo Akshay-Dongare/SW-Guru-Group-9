@@ -14,6 +14,8 @@ Welcome to my submission repository. Below you will find links to individual hom
 | **Homework 2** | *TBD* | ⏳ Pending | - |
 | **Homework 3** | *TBD* | ⏳ Pending | - |
 | **Homework 4** | *TBD* | ⏳ Pending | - |
+| **Homework 5** | *TBD* | ⏳ Pending | - |
+| **Homework 6** | **The world's greatest hello world function**<br>*(Packaging, CI/CD, and GH Pages)*| ✅ Complete | [📂 Open Folder](./Homework%206) |
 
 ---
 
